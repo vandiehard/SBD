@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = ({ onLogin }) => {
   const [role, setRole] = useState('Admin');
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -12,10 +13,15 @@ const Login = ({ onLogin }) => {
       alert("Nama tidak boleh kosong");
       return;
     }
+    if (!password.trim()) {
+      alert("Password tidak boleh kosong");
+      return;
+    }
 
     const userData = {
       name: username,
-      role: role.toLowerCase() // 'admin' or 'dokter'
+      role: role.toLowerCase(), // 'admin' or 'dokter'
+      password: password
     };
 
     onLogin(userData);
@@ -53,7 +59,7 @@ const Login = ({ onLogin }) => {
         </div>
 
         <form onSubmit={handleLogin}>
-          <div className="form-group" style={{ marginBottom: '2rem' }}>
+          <div className="form-group" style={{ marginBottom: '1.5rem' }}>
             <label className="form-label">Nama {role}</label>
             <input 
               type="text" 
@@ -61,6 +67,18 @@ const Login = ({ onLogin }) => {
               placeholder={`Masukkan nama ${role}...`}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group" style={{ marginBottom: '2rem' }}>
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Masukkan password Anda..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
