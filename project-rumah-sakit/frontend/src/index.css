@@ -23,6 +23,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg-color);
   background-image: var(--bg-gradient);
