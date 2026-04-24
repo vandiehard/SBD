@@ -140,7 +140,7 @@ const Operasi = () => {
       {/* Ruang Operasi Display */}
       <h2 style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>Ruang Tersedia</h2>
       <div className="grid grid-3" style={{ marginBottom: '2rem' }}>
-        {ruanganList.map((ruangan) => (
+        {ruanganList.map((ruangan, index) => (
           <div key={ruangan.id_ruangan} className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', position: 'relative' }}>
             <button className="btn btn-danger" style={{ position: 'absolute', top: '10px', right: '10px', padding: '0.2rem 0.5rem', fontSize:'0.7rem' }} onClick={() => deleteRoom(ruangan.id_ruangan)}>X</button>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -148,7 +148,7 @@ const Operasi = () => {
               <span className="badge badge-purple">Lantai {ruangan.lantai}</span>
             </div>
             <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#f8fafc' }}>{ruangan.nama_ruangan}</h3>
-            <p style={{ margin: 0, fontSize: '0.8rem' }}>Room #{ruangan.id_ruangan}</p>
+            <p style={{ margin: 0, fontSize: '0.8rem' }}>Room #{index + 1}</p>
           </div>
         ))}
         {ruanganList.length === 0 && (

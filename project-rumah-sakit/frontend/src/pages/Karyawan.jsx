@@ -129,7 +129,7 @@ const Karyawan = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama Dokter</th>
                 <th>Tipe</th>
                 <th>Spesialisasi</th>
@@ -143,9 +143,9 @@ const Karyawan = () => {
                   <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Belum ada data dokter</td>
                 </tr>
               ) : (
-                dokterList.map((d) => (
+                dokterList.map((d, index) => (
                   <tr key={d.id_karyawan}>
-                    <td>#{d.id_karyawan}</td>
+                    <td>{index + 1}</td>
                     <td style={{ fontWeight: 500, color: '#f8fafc' }}>{d.nama}</td>
                     <td><span className="badge badge-purple">{d.tipe_karyawan}</span></td>
                     <td>{d.spesialisasi || '-'}</td>
@@ -165,7 +165,7 @@ const Karyawan = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama Perawat</th>
                 <th>Tipe</th>
                 <th>Shift Jaga</th>
@@ -179,9 +179,9 @@ const Karyawan = () => {
                   <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Belum ada data perawat</td>
                 </tr>
               ) : (
-                perawatList.map((p) => (
+                perawatList.map((p, index) => (
                   <tr key={p.id_karyawan}>
-                    <td>#{p.id_karyawan}</td>
+                    <td>{index + 1}</td>
                     <td style={{ fontWeight: 500, color: '#f8fafc' }}>{p.nama}</td>
                     <td><span className="badge badge-green">{p.tipe_karyawan}</span></td>
                     <td><span className="badge badge-blue">{p.shift_jaga || '-'}</span></td>
