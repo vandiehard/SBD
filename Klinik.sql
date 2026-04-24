@@ -70,3 +70,13 @@ CREATE TABLE TINDAKAN_OPERASI (
     FOREIGN KEY (id_pasien) REFERENCES PASIEN(id_pasien) ON DELETE RESTRICT,
     FOREIGN KEY (id_ruangan) REFERENCES RUANG_OPERASI(id_ruangan) ON DELETE RESTRICT
 );
+
+-- 9. Buat Tabel USERS (untuk autentikasi)
+CREATE TABLE USERS (
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL, -- 'dokter', 'perawat', dll
+    id_karyawan INT,
+    FOREIGN KEY (id_karyawan) REFERENCES KARYAWAN(id_karyawan) ON DELETE CASCADE
+);
