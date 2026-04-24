@@ -13,10 +13,12 @@ app.use(express.json());
 const pasienRoutes = require('./routes/pasien');
 const karyawanRoutes = require('./routes/karyawan');
 const operasiRoutes = require('./routes/operasi');
+const authRoutes = require('./routes/auth');
 
 app.use('/api/pasien', pasienRoutes);
 app.use('/api/karyawan', karyawanRoutes);
 app.use('/api/operasi', operasiRoutes);
+app.use('/api/auth', authRoutes);
 
 // Base route
 app.get('/', (req, res) => {

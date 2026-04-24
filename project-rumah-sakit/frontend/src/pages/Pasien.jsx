@@ -99,7 +99,7 @@ const Pasien = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>No</th>
               <th>Nama Pasien</th>
               <th>Tanggal Lahir</th>
               <th>Umur</th>
@@ -113,9 +113,9 @@ const Pasien = () => {
                 <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Belum ada data pasien</td>
               </tr>
             ) : (
-              pasienList.map((p) => (
+              pasienList.map((p, index) => (
                 <tr key={p.id_pasien}>
-                  <td>#{p.id_pasien}</td>
+                  <td>{index + 1}</td>
                   <td style={{ fontWeight: 500, color: '#f8fafc' }}>{p.nama_pasien}</td>
                   <td>{p.tgl_lahir ? new Date(p.tgl_lahir).toLocaleDateString() : '-'}</td>
                   <td>{p.umur ? `${p.umur} Thn` : '-'}</td>

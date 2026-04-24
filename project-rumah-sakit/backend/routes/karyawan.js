@@ -32,9 +32,10 @@ router.get('/stats', async (req, res) => {
 router.get('/dokter', async (req, res) => {
   try {
     const query = `
-      SELECT K.*, D.spesialisasi, D.no_izin 
+      SELECT K.*, D.spesialisasi, D.no_izin, U.username 
       FROM KARYAWAN K
       JOIN DOKTER D ON K.id_karyawan = D.id_karyawan
+      LEFT JOIN USERS U ON K.id_karyawan = U.id_karyawan
     `;
     const [dokter] = await db.query(query);
     res.json(dokter);
@@ -48,9 +49,10 @@ router.get('/dokter', async (req, res) => {
 router.get('/perawat', async (req, res) => {
   try {
     const query = `
-      SELECT K.*, P.shift_jaga, P.area_tugas 
+      SELECT K.*, P.shift_jaga, P.area_tugas, U.username
       FROM KARYAWAN K
       JOIN PERAWAT P ON K.id_karyawan = P.id_karyawan
+      LEFT JOIN USERS U ON K.id_karyawan = U.id_karyawan
     `;
     const [perawat] = await db.query(query);
     res.json(perawat);
@@ -60,9 +62,11 @@ router.get('/perawat', async (req, res) => {
   }
 });
 
+const bcrypt = require('bcryptjs');
+
 // POST to create Dokter or Perawat
 router.post('/', async (req, res) => {
-  const { nama, tipe_karyawan, spesialisasi, no_izin, shift_jaga, area_tugas } = req.body;
+  const { nama, tipe_karyawan, spesialisasi, no_izin, shift_jaga, area_tugas, username, password } = req.body;
   const conn = await db.getConnection();
   try {
     await conn.beginTransaction();
@@ -75,11 +79,26 @@ router.post('/', async (req, res) => {
       await conn.query('INSERT INTO PERAWAT (id_karyawan, shift_jaga, area_tugas) VALUES (?, ?, ?)', [id_karyawan, shift_jaga || null, area_tugas || null]);
     }
 
+    // Create user account if username and password are provided
+    if (username && password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const role = tipe_karyawan === 'DOKTER' ? 'dokter' : 'perawat'; // Need to be careful with roles
+      
+      await conn.query(
+        'INSERT INTO USERS (username, password, role, id_karyawan) VALUES (?, ?, ?, ?)',
+        [username, hashedPassword, role, id_karyawan]
+      );
+    }
+
     await conn.commit();
     res.status(201).json({ id_karyawan, message: 'Karyawan created successfully' });
   } catch (error) {
     await conn.rollback();
     console.error(error);
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ message: 'Username sudah digunakan' });
+    }
     res.status(500).json({ message: 'Server Error' });
   } finally {
     conn.release();
@@ -88,7 +107,7 @@ router.post('/', async (req, res) => {
 
 // PUT to update Dokter or Perawat
 router.put('/:id', async (req, res) => {
-  const { nama, spesialisasi, no_izin, shift_jaga, area_tugas } = req.body;
+  const { nama, spesialisasi, no_izin, shift_jaga, area_tugas, username, password } = req.body;
   const conn = await db.getConnection();
   try {
     await conn.beginTransaction();
@@ -107,11 +126,37 @@ router.put('/:id', async (req, res) => {
       await conn.query('UPDATE PERAWAT SET shift_jaga = ?, area_tugas = ? WHERE id_karyawan = ?', [shift_jaga, area_tugas, req.params.id]);
     }
 
+    // Update user credentials if username is provided
+    if (username) {
+      const [existingUser] = await conn.query('SELECT id_user FROM USERS WHERE id_karyawan = ?', [req.params.id]);
+      
+      if (existingUser.length > 0) {
+        if (password) {
+          const salt = await bcrypt.genSalt(10);
+          const hashedPassword = await bcrypt.hash(password, salt);
+          await conn.query('UPDATE USERS SET username = ?, password = ? WHERE id_karyawan = ?', [username, hashedPassword, req.params.id]);
+        } else {
+          await conn.query('UPDATE USERS SET username = ? WHERE id_karyawan = ?', [username, req.params.id]);
+        }
+      } else {
+        // If they didn't have an account before but admin is adding one now
+        const role = tipe_karyawan === 'DOKTER' ? 'dokter' : 'perawat';
+        if (password) {
+          const salt = await bcrypt.genSalt(10);
+          const hashedPassword = await bcrypt.hash(password, salt);
+          await conn.query('INSERT INTO USERS (username, password, role, id_karyawan) VALUES (?, ?, ?, ?)', [username, hashedPassword, role, req.params.id]);
+        }
+      }
+    }
+
     await conn.commit();
     res.json({ message: 'Karyawan updated successfully' });
   } catch (error) {
     await conn.rollback();
     console.error(error);
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ message: 'Username sudah digunakan' });
+    }
     res.status(500).json({ message: 'Server Error' });
   } finally {
     conn.release();

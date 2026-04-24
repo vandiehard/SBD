@@ -12,6 +12,8 @@ const Karyawan = () => {
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     nama: '',
+    username: '',
+    password: '',
     tipe_karyawan: 'DOKTER',
     spesialisasi: '',
     no_izin: '',
@@ -44,6 +46,8 @@ const Karyawan = () => {
     setEditingId(null);
     setFormData({
       nama: '',
+      username: '',
+      password: '',
       tipe_karyawan: activeTab === 'dokter' ? 'DOKTER' : 'PERAWAT',
       spesialisasi: '', no_izin: '', shift_jaga: '', area_tugas: ''
     });
@@ -54,6 +58,8 @@ const Karyawan = () => {
     setEditingId(karyawan.id_karyawan);
     setFormData({
       nama: karyawan.nama,
+      username: karyawan.username || '',
+      password: '', // Leave blank, only update if admin types something
       tipe_karyawan: tipe,
       spesialisasi: karyawan.spesialisasi || '',
       no_izin: karyawan.no_izin || '',
@@ -123,7 +129,7 @@ const Karyawan = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama Dokter</th>
                 <th>Tipe</th>
                 <th>Spesialisasi</th>
@@ -137,9 +143,9 @@ const Karyawan = () => {
                   <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Belum ada data dokter</td>
                 </tr>
               ) : (
-                dokterList.map((d) => (
+                dokterList.map((d, index) => (
                   <tr key={d.id_karyawan}>
-                    <td>#{d.id_karyawan}</td>
+                    <td>{index + 1}</td>
                     <td style={{ fontWeight: 500, color: '#f8fafc' }}>{d.nama}</td>
                     <td><span className="badge badge-purple">{d.tipe_karyawan}</span></td>
                     <td>{d.spesialisasi || '-'}</td>
@@ -159,7 +165,7 @@ const Karyawan = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama Perawat</th>
                 <th>Tipe</th>
                 <th>Shift Jaga</th>
@@ -173,9 +179,9 @@ const Karyawan = () => {
                   <td colSpan="6" style={{ textAlign: 'center', padding: '2rem' }}>Belum ada data perawat</td>
                 </tr>
               ) : (
-                perawatList.map((p) => (
+                perawatList.map((p, index) => (
                   <tr key={p.id_karyawan}>
-                    <td>#{p.id_karyawan}</td>
+                    <td>{index + 1}</td>
                     <td style={{ fontWeight: 500, color: '#f8fafc' }}>{p.nama}</td>
                     <td><span className="badge badge-green">{p.tipe_karyawan}</span></td>
                     <td><span className="badge badge-blue">{p.shift_jaga || '-'}</span></td>
@@ -204,6 +210,17 @@ const Karyawan = () => {
               <div className="form-group">
                 <label className="form-label">Nama Lengkap</label>
                 <input type="text" name="nama" className="form-control" value={formData.nama} onChange={handleChange} required />
+              </div>
+              
+              <div className="grid grid-2">
+                <div className="form-group">
+                  <label className="form-label">Username</label>
+                  <input type="text" name="username" className="form-control" value={formData.username} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Password {editingId && '(Kosongkan jika tidak diubah)'}</label>
+                  <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required={!editingId} />
+                </div>
               </div>
               
               {!editingId && (
