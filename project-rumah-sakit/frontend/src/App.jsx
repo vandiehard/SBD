@@ -7,6 +7,7 @@ import Karyawan from './pages/Karyawan';
 import Operasi from './pages/Operasi';
 import PublicLanding from './pages/PublicLanding';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import DashboardDokter from './pages/DashboardDokter';
 
 // Protected Route Component
@@ -58,6 +59,7 @@ function App() {
       {/* Public Routes */}
       <Route path="/" element={<PublicLanding />} />
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
+      <Route path="/register" element={<Register />} />
 
       {/* Protected Layout Routes */}
       <Route element={<MainLayout user={user} onLogout={handleLogout} />}>
