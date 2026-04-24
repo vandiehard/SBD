@@ -12,6 +12,8 @@ const Karyawan = () => {
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     nama: '',
+    username: '',
+    password: '',
     tipe_karyawan: 'DOKTER',
     spesialisasi: '',
     no_izin: '',
@@ -44,6 +46,8 @@ const Karyawan = () => {
     setEditingId(null);
     setFormData({
       nama: '',
+      username: '',
+      password: '',
       tipe_karyawan: activeTab === 'dokter' ? 'DOKTER' : 'PERAWAT',
       spesialisasi: '', no_izin: '', shift_jaga: '', area_tugas: ''
     });
@@ -54,6 +58,8 @@ const Karyawan = () => {
     setEditingId(karyawan.id_karyawan);
     setFormData({
       nama: karyawan.nama,
+      username: karyawan.username || '',
+      password: '', // Leave blank, only update if admin types something
       tipe_karyawan: tipe,
       spesialisasi: karyawan.spesialisasi || '',
       no_izin: karyawan.no_izin || '',
@@ -204,6 +210,17 @@ const Karyawan = () => {
               <div className="form-group">
                 <label className="form-label">Nama Lengkap</label>
                 <input type="text" name="nama" className="form-control" value={formData.nama} onChange={handleChange} required />
+              </div>
+              
+              <div className="grid grid-2">
+                <div className="form-group">
+                  <label className="form-label">Username</label>
+                  <input type="text" name="username" className="form-control" value={formData.username} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Password {editingId && '(Kosongkan jika tidak diubah)'}</label>
+                  <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required={!editingId} />
+                </div>
               </div>
               
               {!editingId && (

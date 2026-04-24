@@ -97,7 +97,7 @@ const Login = ({ onLogin }) => {
 
         <div style={{ textAlign: 'center', marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ color: 'var(--text-muted)' }}>
-            Belum punya akun? <span onClick={() => navigate('/register')} style={{ color: 'var(--primary)', cursor: 'pointer', fontWeight: 'bold' }}>Daftar di sini</span>
+            <span onClick={() => alert('Silakan hubungi Admin untuk bantuan mereset password Anda.')} style={{ color: 'var(--primary)', cursor: 'pointer', fontWeight: 'bold' }}>Lupa password?</span>
           </div>
           <a href="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.9rem' }}>
             ← Kembali ke Beranda
