@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Dashboard from './pages/Dashboard';
-import Pasien from './pages/Pasien';
-import Karyawan from './pages/Karyawan';
-import Operasi from './pages/Operasi';
-import PublicLanding from './pages/PublicLanding';
-import Login from './pages/Login';
-import DashboardDokter from './pages/DashboardDokter';
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import Pasien from "./pages/Pasien";
+import Karyawan from "./pages/Karyawan";
+import Operasi from "./pages/Operasi";
+import PublicLanding from "./pages/PublicLanding";
+import Login from "./pages/Login";
+import DashboardDokter from "./pages/DashboardDokter";
 
 // Protected Route Component
 const ProtectedRoute = ({ user, allowedRoles, children }) => {
@@ -39,45 +40,54 @@ const MainLayout = ({ user, onLogout }) => {
 
 function App() {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('user');
+    const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : null;
   });
 
   const handleLogin = (userData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
   };
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<PublicLanding />} />
-      <Route path="/login" element={<Login onLogin={handleLogin} />} />
+    <ThemeProvider>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<PublicLanding />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
 
-      {/* Protected Layout Routes */}
-      <Route element={<MainLayout user={user} onLogout={handleLogout} />}>
-        {/* Admin Routes */}
-        <Route element={<ProtectedRoute user={user} allowedRoles={['admin']} />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/pasien" element={<Pasien />} />
-          <Route path="/admin/karyawan" element={<Karyawan />} />
-          <Route path="/admin/operasi" element={<Operasi />} />
+        {/* Protected Layout Routes */}
+        <Route element={<MainLayout user={user} onLogout={handleLogout} />}>
+          {/* Admin Routes */}
+          <Route
+            element={<ProtectedRoute user={user} allowedRoles={["admin"]} />}
+          >
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/pasien" element={<Pasien />} />
+            <Route path="/admin/karyawan" element={<Karyawan />} />
+            <Route path="/admin/operasi" element={<Operasi />} />
+          </Route>
+
+          {/* Dokter Routes */}
+          <Route
+            element={<ProtectedRoute user={user} allowedRoles={["dokter"]} />}
+          >
+            <Route
+              path="/dokter/dashboard"
+              element={<DashboardDokter user={user} />}
+            />
+          </Route>
         </Route>
 
-        {/* Dokter Routes */}
-        <Route element={<ProtectedRoute user={user} allowedRoles={['dokter']} />}>
-          <Route path="/dokter/dashboard" element={<DashboardDokter user={user} />} />
-        </Route>
-      </Route>
-
-      {/* Catch All Redirect */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        {/* Catch All Redirect */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 
