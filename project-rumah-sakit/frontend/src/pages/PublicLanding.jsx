@@ -50,9 +50,9 @@ const PublicLanding = () => {
       {/* Hero Section */}
       <section
         style={{
-          padding: "6rem 5%",
+          padding: "8rem 5%",
           textAlign: "center",
-          minHeight: "60vh",
+          minHeight: "70vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -61,36 +61,61 @@ const PublicLanding = () => {
         }}
       >
         <h1
-          style={{ fontSize: "4rem", marginBottom: "1.5rem", lineHeight: 1.2 }}
+          style={{
+            fontSize: "3.5rem",
+            marginBottom: "1.5rem",
+            lineHeight: 1.2,
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 700,
+            letterSpacing: "-0.02em",
+          }}
         >
-          Layanan Kesehatan <br />
-          Terbaik Untuk Anda
+          Premium Healthcare Services <br />
+          Excellence in Medical Care
         </h1>
         <p
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1.1rem",
             color: "var(--text-muted)",
-            maxWidth: "600px",
-            margin: "0 auto 2.5rem auto",
+            maxWidth: "700px",
+            margin: "0 auto 3rem auto",
+            fontWeight: 500,
+            letterSpacing: "0.3px",
+            lineHeight: 1.8,
           }}
         >
-          Kami menyediakan layanan medis profesional dengan dokter spesialis
-          berpengalaman dan fasilitas modern untuk memastikan kesehatan Anda.
+          Delivering comprehensive medical solutions with board-certified
+          specialists, cutting-edge facilities, and patient-centered care. Your
+          health is our priority.
         </p>
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <div
+          style={{ display: "flex", gap: "1.5rem", justifyContent: "center" }}
+        >
           <a
             href="#jadwal"
             className="btn btn-primary"
-            style={{ padding: "1rem 2rem", fontSize: "1.1rem" }}
+            style={{
+              padding: "1rem 2.5rem",
+              fontSize: "0.95rem",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              letterSpacing: "1px",
+            }}
           >
-            Cek Jadwal Operasi
+            View Surgery Schedule
           </a>
           <a
             href="#about"
-            className="btn btn-glass"
-            style={{ padding: "1rem 2rem", fontSize: "1.1rem" }}
+            className="btn btn-secondary"
+            style={{
+              padding: "1rem 2.5rem",
+              fontSize: "0.95rem",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              letterSpacing: "1px",
+            }}
           >
-            Pelajari Lebih Lanjut
+            Learn More
           </a>
         </div>
       </section>
@@ -98,128 +123,352 @@ const PublicLanding = () => {
       {/* About & Address Section */}
       <section
         id="about"
-        style={{ padding: "5rem 5%", background: "rgba(0,0,0,0.2)" }}
+        style={{
+          padding: "6rem 5%",
+          background: "var(--surface)",
+          borderTop: "2px solid var(--border-color)",
+          borderBottom: "2px solid var(--border-color)",
+        }}
       >
         <div
           className="grid grid-2"
           style={{ alignItems: "center", gap: "4rem" }}
         >
           <div>
-            <h2 style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}>
-              Tentang MyKlinik
+            <h2
+              style={{
+                fontSize: "2.8rem",
+                marginBottom: "1.5rem",
+                fontFamily: "'Poppins', sans-serif",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              About MyKlinik Pro
             </h2>
-            <p style={{ fontSize: "1.1rem", marginBottom: "1.5rem" }}>
-              MyKlinik didirikan dengan tujuan memberikan pelayanan kesehatan
-              yang berkualitas, aman, dan terpercaya. Kami memiliki tim dokter
-              spesialis dan perawat yang berdedikasi tinggi.
+            <p
+              style={{
+                fontSize: "1rem",
+                marginBottom: "1.5rem",
+                lineHeight: 1.8,
+                color: "var(--text-muted)",
+              }}
+            >
+              MyKlinik stands as a beacon of medical excellence, committed to
+              delivering world-class healthcare services. Our state-of-the-art
+              facilities and highly trained medical professionals ensure
+              comprehensive patient care.
             </p>
-            <div className="glass-card" style={{ padding: "1.5rem" }}>
+            <p
+              style={{
+                fontSize: "1rem",
+                marginBottom: "2rem",
+                lineHeight: 1.8,
+                color: "var(--text-muted)",
+              }}
+            >
+              With decades of combined experience, our specialists provide
+              specialized treatment across multiple disciplines, maintaining the
+              highest standards of medical ethics and patient safety.
+            </p>
+            <div
+              className="glass-card"
+              style={{
+                padding: "2rem",
+                background: "rgba(30, 64, 175, 0.08)",
+                borderLeft: "4px solid var(--primary)",
+              }}
+            >
               <h3
                 style={{
-                  fontSize: "1.2rem",
-                  marginBottom: "0.5rem",
-                  color: "#f472b6",
+                  fontSize: "1rem",
+                  marginBottom: "0.75rem",
+                  color: "var(--primary)",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
                 }}
               >
-                📍 Alamat Kami
+                📍 Our Location
               </h3>
-              <p style={{ margin: 0 }}>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--text-main)",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                }}
+              >
                 Jl. Kesehatan No. 123, Jakarta Selatan
                 <br />
                 DKI Jakarta 12345
                 <br />
-                Telp: (021) 555-1234
+                <strong>Phone:</strong> (021) 555-1234
               </p>
             </div>
           </div>
-          <div className="grid grid-2" style={{ gap: "1.5rem" }}>
+          <div className="grid grid-2" style={{ gap: "2rem" }}>
             <div
               className="glass-card"
-              style={{ textAlign: "center", padding: "2rem 1rem" }}
+              style={{
+                textAlign: "center",
+                padding: "2.5rem 1.5rem",
+                background: "rgba(30, 64, 175, 0.05)",
+              }}
             >
-              <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>👨‍⚕️</div>
-              <h3>50+</h3>
-              <p style={{ margin: 0 }}>Dokter Spesialis</p>
+              <div style={{ fontSize: "2.8rem", marginBottom: "1rem" }}>👨‍⚕️</div>
+              <h3
+                style={{
+                  fontSize: "2.2rem",
+                  fontWeight: 700,
+                  color: "var(--primary)",
+                  margin: "0 0 0.5rem 0",
+                }}
+              >
+                50+
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--text-muted)",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Specialist Doctors
+              </p>
             </div>
             <div
               className="glass-card"
-              style={{ textAlign: "center", padding: "2rem 1rem" }}
+              style={{
+                textAlign: "center",
+                padding: "2.5rem 1.5rem",
+                background: "rgba(30, 64, 175, 0.05)",
+              }}
             >
-              <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🏥</div>
-              <h3>24/7</h3>
-              <p style={{ margin: 0 }}>Layanan Darurat</p>
+              <div style={{ fontSize: "2.8rem", marginBottom: "1rem" }}>🏥</div>
+              <h3
+                style={{
+                  fontSize: "2.2rem",
+                  fontWeight: 700,
+                  color: "var(--primary)",
+                  margin: "0 0 0.5rem 0",
+                }}
+              >
+                24/7
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--text-muted)",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Emergency Services
+              </p>
             </div>
             <div
               className="glass-card"
-              style={{ textAlign: "center", padding: "2rem 1rem" }}
+              style={{
+                textAlign: "center",
+                padding: "2.5rem 1.5rem",
+                background: "rgba(30, 64, 175, 0.05)",
+              }}
             >
-              <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🛏️</div>
-              <h3>100+</h3>
-              <p style={{ margin: 0 }}>Ruang Inap</p>
+              <div style={{ fontSize: "2.8rem", marginBottom: "1rem" }}>🛏️</div>
+              <h3
+                style={{
+                  fontSize: "2.2rem",
+                  fontWeight: 700,
+                  color: "var(--primary)",
+                  margin: "0 0 0.5rem 0",
+                }}
+              >
+                100+
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--text-muted)",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Patient Beds
+              </p>
             </div>
             <div
               className="glass-card"
-              style={{ textAlign: "center", padding: "2rem 1rem" }}
+              style={{
+                textAlign: "center",
+                padding: "2.5rem 1.5rem",
+                background: "rgba(30, 64, 175, 0.05)",
+              }}
             >
-              <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>⭐</div>
-              <h3>99%</h3>
-              <p style={{ margin: 0 }}>Pasien Puas</p>
+              <div style={{ fontSize: "2.8rem", marginBottom: "1rem" }}>⭐</div>
+              <h3
+                style={{
+                  fontSize: "2.2rem",
+                  fontWeight: 700,
+                  color: "var(--primary)",
+                  margin: "0 0 0.5rem 0",
+                }}
+              >
+                99%
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--text-muted)",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Patient Satisfaction
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Portfolio / Documentation */}
-      <section id="portfolio" style={{ padding: "5rem 5%" }}>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h2 style={{ fontSize: "2.5rem" }}>Fasilitas & Dokumentasi</h2>
-          <p>Klinik kami dilengkapi dengan fasilitas standar internasional.</p>
+      <section id="portfolio" style={{ padding: "6rem 5%" }}>
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <h2
+            style={{
+              fontSize: "2.8rem",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 700,
+              letterSpacing: "-0.01em",
+              marginBottom: "1rem",
+            }}
+          >
+            Facilities & Infrastructure
+          </h2>
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: "1rem",
+              fontWeight: 500,
+            }}
+          >
+            Equipped with internationally-recognized standards and advanced
+            medical technology.
+          </p>
         </div>
         <div className="grid grid-3">
-          <div className="glass-card" style={{ padding: "0.5rem" }}>
+          <div
+            className="glass-card"
+            style={{ padding: "1rem", overflow: "hidden" }}
+          >
             <img
               src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=600&auto=format&fit=crop"
               alt="Ruang Operasi"
               style={{
                 width: "100%",
-                height: "200px",
+                height: "220px",
                 objectFit: "cover",
-                borderRadius: "12px",
+                borderRadius: "8px",
+                marginBottom: "1rem",
               }}
             />
-            <h3 style={{ padding: "1rem 0.5rem 0.5rem" }}>
-              Ruang Operasi Modern
+            <h3
+              style={{
+                padding: "0 0.5rem 0.5rem 0",
+                fontSize: "1.1rem",
+                fontWeight: 700,
+                color: "var(--text-main)",
+              }}
+            >
+              Advanced Operating Rooms
             </h3>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: "0.9rem",
+                padding: "0 0.5rem",
+              }}
+            >
+              State-of-the-art surgical suites with latest technology
+            </p>
           </div>
-          <div className="glass-card" style={{ padding: "0.5rem" }}>
+          <div
+            className="glass-card"
+            style={{ padding: "1rem", overflow: "hidden" }}
+          >
             <img
               src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=600&auto=format&fit=crop"
               alt="Lobi Utama"
               style={{
                 width: "100%",
-                height: "200px",
+                height: "220px",
                 objectFit: "cover",
-                borderRadius: "12px",
+                borderRadius: "8px",
+                marginBottom: "1rem",
               }}
             />
-            <h3 style={{ padding: "1rem 0.5rem 0.5rem" }}>
-              Lobi & Ruang Tunggu
+            <h3
+              style={{
+                padding: "0 0.5rem 0.5rem 0",
+                fontSize: "1.1rem",
+                fontWeight: 700,
+                color: "var(--text-main)",
+              }}
+            >
+              Patient Comfort Areas
             </h3>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: "0.9rem",
+                padding: "0 0.5rem",
+              }}
+            >
+              Modern facilities designed for patient comfort
+            </p>
           </div>
-          <div className="glass-card" style={{ padding: "0.5rem" }}>
+          <div
+            className="glass-card"
+            style={{ padding: "1rem", overflow: "hidden" }}
+          >
             <img
               src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=600&auto=format&fit=crop"
               alt="Perawatan"
               style={{
                 width: "100%",
-                height: "200px",
+                height: "220px",
                 objectFit: "cover",
-                borderRadius: "12px",
+                borderRadius: "8px",
+                marginBottom: "1rem",
               }}
             />
-            <h3 style={{ padding: "1rem 0.5rem 0.5rem" }}>
-              Fasilitas Rawat Inap
+            <h3
+              style={{
+                padding: "0 0.5rem 0.5rem 0",
+                fontSize: "1.1rem",
+                fontWeight: 700,
+                color: "var(--text-main)",
+              }}
+            >
+              Inpatient Care Units
             </h3>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: "0.9rem",
+                padding: "0 0.5rem",
+              }}
+            >
+              Comprehensive care with 24/7 monitoring
+            </p>
           </div>
         </div>
       </section>
@@ -227,13 +476,33 @@ const PublicLanding = () => {
       {/* Searchable Surgery Schedule */}
       <section
         id="jadwal"
-        style={{ padding: "5rem 5%", background: "rgba(0,0,0,0.2)" }}
+        style={{
+          padding: "6rem 5%",
+          background: "var(--surface)",
+          borderTop: "2px solid var(--border-color)",
+        }}
       >
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <h2 style={{ fontSize: "2.5rem" }}>Jadwal Operasi Pasien</h2>
-            <p>
-              Cari jadwal operasi berdasarkan nama pasien atau jenis operasi.
+            <h2
+              style={{
+                fontSize: "2.8rem",
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 700,
+                letterSpacing: "-0.01em",
+                marginBottom: "1rem",
+              }}
+            >
+              Surgery Schedule
+            </h2>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontSize: "1rem",
+                fontWeight: 500,
+              }}
+            >
+              Search and view upcoming surgical procedures
             </p>
           </div>
 
@@ -241,13 +510,13 @@ const PublicLanding = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="🔍 Cari nama pasien atau jenis operasi..."
+              placeholder="🔍 Search by patient name or procedure type..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
-                padding: "1rem 1.5rem",
-                fontSize: "1.1rem",
-                borderRadius: "50px",
+                padding: "1.1rem 1.5rem",
+                fontSize: "1rem",
+                borderRadius: "8px",
               }}
             />
           </div>
@@ -257,17 +526,23 @@ const PublicLanding = () => {
             style={{ marginTop: "2rem" }}
           >
             {loading ? (
-              <div style={{ textAlign: "center", padding: "3rem" }}>
-                Memuat jadwal...
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "3rem",
+                  color: "var(--text-muted)",
+                }}
+              >
+                Loading schedule...
               </div>
             ) : (
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Waktu Operasi</th>
-                    <th>Nama Pasien</th>
-                    <th>Jenis Operasi</th>
-                    <th>Dokter</th>
+                    <th>Surgery Date & Time</th>
+                    <th>Patient Name</th>
+                    <th>Procedure Type</th>
+                    <th>Physician</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -275,20 +550,28 @@ const PublicLanding = () => {
                     <tr>
                       <td
                         colSpan="4"
-                        style={{ textAlign: "center", padding: "3rem" }}
+                        style={{
+                          textAlign: "center",
+                          padding: "3rem",
+                          color: "var(--text-muted)",
+                        }}
                       >
-                        Tidak ada jadwal operasi yang ditemukan.
+                        No surgery schedules found for your search.
                       </td>
                     </tr>
                   ) : (
                     filteredOperasi.map((op) => (
                       <tr key={op.id_tindakan}>
-                        <td>
+                        <td style={{ fontWeight: 500 }}>
                           {new Date(op.jadwal_operasi).toLocaleString("id-ID")}
                         </td>
                         <td style={{ fontWeight: 600 }}>{op.nama_pasien}</td>
                         <td>{op.jenis_operasi}</td>
-                        <td>{op.nama_dokter}</td>
+                        <td>
+                          <span className="badge badge-blue">
+                            {op.nama_dokter}
+                          </span>
+                        </td>
                       </tr>
                     ))
                   )}
@@ -301,14 +584,17 @@ const PublicLanding = () => {
 
       <footer
         style={{
-          padding: "2rem 5%",
+          padding: "3rem 5%",
           textAlign: "center",
-          borderTop: "1px solid var(--glass-border)",
-          background: "rgba(15, 23, 42, 0.8)",
+          borderTop: "2px solid var(--border-color)",
+          background: "var(--surface)",
+          color: "var(--text-muted)",
+          fontSize: "0.9rem",
+          fontWeight: 500,
         }}
       >
-        <p style={{ margin: 0 }}>
-          © {new Date().getFullYear()} MyKlinik. Hak Cipta Dilindungi.
+        <p style={{ margin: 0, letterSpacing: "0.3px" }}>
+          © {new Date().getFullYear()} MyKlinik Pro. All Rights Reserved.
         </p>
       </footer>
     </div>

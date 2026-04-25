@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,11 +26,9 @@ const Header = () => {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "1.5rem 5%",
-        background: isScrolled
-          ? "rgba(15, 23, 42, 0.95)"
-          : "rgba(15, 23, 42, 0.3)",
+        background: isScrolled ? "var(--surface)" : "rgba(255, 255, 255, 0.01)",
         backdropFilter: "blur(10px)",
-        borderBottom: isScrolled ? "1px solid var(--glass-border)" : "none",
+        borderBottom: isScrolled ? "1px solid var(--border-color)" : "none",
         position: "fixed",
         top: 0,
         left: 0,
@@ -41,23 +40,27 @@ const Header = () => {
       <h2
         style={{
           margin: 0,
-          background: "linear-gradient(to right, #38bdf8, #818cf8)",
-          WebkitBackgroundClip: "text",
-          color: "transparent",
+          color: "var(--primary)",
           fontWeight: "bold",
           fontSize: "1.5rem",
+          fontFamily: "'Poppins', sans-serif",
+          letterSpacing: "-0.5px",
         }}
       >
-        MyKlinik
+        MyKlinik Pro
       </h2>
-      <nav style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+      <nav style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
         <a
           href="#about"
           style={{
             color: "var(--text-main)",
             textDecoration: "none",
             fontWeight: 500,
+            fontSize: "0.95rem",
+            transition: "color 0.3s ease",
           }}
+          onMouseEnter={(e) => (e.target.style.color = "var(--primary)")}
+          onMouseLeave={(e) => (e.target.style.color = "var(--text-main)")}
         >
           Tentang Kami
         </a>
@@ -67,7 +70,11 @@ const Header = () => {
             color: "var(--text-main)",
             textDecoration: "none",
             fontWeight: 500,
+            fontSize: "0.95rem",
+            transition: "color 0.3s ease",
           }}
+          onMouseEnter={(e) => (e.target.style.color = "var(--primary)")}
+          onMouseLeave={(e) => (e.target.style.color = "var(--text-main)")}
         >
           Portfolio
         </a>
@@ -77,10 +84,15 @@ const Header = () => {
             color: "var(--text-main)",
             textDecoration: "none",
             fontWeight: 500,
+            fontSize: "0.95rem",
+            transition: "color 0.3s ease",
           }}
+          onMouseEnter={(e) => (e.target.style.color = "var(--primary)")}
+          onMouseLeave={(e) => (e.target.style.color = "var(--text-main)")}
         >
           Jadwal Operasi
         </a>
+        <ThemeToggle />
         <button className="btn btn-primary" onClick={() => navigate("/login")}>
           Login Staff
         </button>
